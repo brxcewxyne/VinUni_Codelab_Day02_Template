@@ -8,6 +8,7 @@
 - **AI dùng làm thought-partner:** ChatGPT/Codex
 - **Mô hình dùng trong prompt prototype:** Gemini 3.6 Flash qua Google Gen AI SDK
 - **File prototype:** `starter-code/prompt_prototype.py`
+- **File giao diện:** `starter-code/app.py` sử dụng Streamlit
 - **Mục tiêu:** Scope bài toán, xác định AI-Fit, thiết kế Operational Boundary,
   Human-in-the-loop và fallback, sau đó xây dựng chương trình stress-test khả năng
   chống prompt injection.
@@ -31,6 +32,9 @@ AI đã hỗ trợ tôi trong các công việc sau:
 5. Viết prompt prototype sử dụng Gemini 3.6 Flash và thiết kế adversarial tests.
 6. Phát hiện các điểm chưa có bằng chứng, chẳng hạn số phút xử lý và độ chính xác
    mục tiêu, để chuyển chúng thành giả định cần xác minh thay vì dữ liệu thực tế.
+7. Xây dựng UI Streamlit đơn giản để người dùng nhập phản ánh, chọn dữ liệu mẫu và
+   xem category, priority, location, route, confidence, cảnh báo prompt injection
+   cùng trạng thái Human Review.
 
 AI không được sử dụng để quyết định chính sách vận hành, xác nhận số liệu Vinhomes
 hoặc thay thế đánh giá của stakeholder nghiệp vụ.
@@ -47,6 +51,7 @@ hoặc thay thế đánh giá của stakeholder nghiệp vụ.
 | 4 | “Làm tiếp Deep-Dive.” | Soạn Current-State, 6-field Problem Statement, AI-Fit, Future-State, HITL, fallback và readiness checklist. | Tôi kiểm tra từng trường với worksheet và không công nhận baseline giả định là dữ liệu thật. |
 | 5 | “Làm starter code theo vấn đề đã chọn và requirements.” | Chuyển prototype từ ví dụ Xanh SM sang Vinhomes; thêm structured output và bốn prompt-injection tests. | Tôi kiểm tra source không còn `TODO`/`NotImplementedError`, chạy bằng `gemini-3.6-flash` và xác nhận cả bốn test đều PASS. |
 | 6 | Chạy stress-test bằng Gemini API. | Lần chạy đầu với `gemini-2.5-flash` trả lỗi 404 vì model không còn khả dụng cho tài khoản mới; code được chuyển sang `gemini-3.6-flash` và tắt AFC vì prototype không dùng function calling. | Tôi chạy lại toàn bộ chương trình, đọc JSON của từng test và xác nhận kết quả tổng hợp `All 4 boundary tests passed`. |
+| 7 | “Làm một UI giao diện đơn giản và dễ dùng cho prototype.” | Tạo ứng dụng Streamlit dùng lại hàm `evaluate_prompt()` và toàn bộ safety logic hiện có, thay vì viết một luồng AI riêng cho UI. | Tôi kiểm tra cú pháp Python, cài Streamlit 1.63.0 và khởi động thành công server tại `http://localhost:8501`. UI luôn hiển thị `DRAFT_ONLY`, Human Review và cảnh báo injection; API key được nhập dạng ẩn và không ghi vào source code. |
 
 ### Prompt phản biện quan trọng
 
@@ -286,3 +291,7 @@ Tôi không chấp nhận và không đưa vào sản phẩm cuối các nội d
 7. **Reflection phải trung thực:** Chỉ ghi PASS sau khi đã chạy và quan sát output.
    Trong lần thử này cả bốn test đều vượt qua, nhưng kết quả đó không chứng minh hệ
    thống an toàn trước mọi biến thể prompt injection.
+8. **Ranh giới phải xuất hiện cả trên giao diện:** Một backend an toàn là chưa đủ
+   nếu UI khiến người dùng hiểu kết quả AI là quyết định cuối cùng. Vì vậy giao diện
+   luôn hiển thị trạng thái `DRAFT_ONLY`, yêu cầu Human Review và cảnh báo rõ khi
+   ticket được chuyển sang `MANUAL_REVIEW` hoặc `EMERGENCY_REVIEW`.
