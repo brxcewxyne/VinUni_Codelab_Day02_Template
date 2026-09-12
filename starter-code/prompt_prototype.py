@@ -3,7 +3,7 @@ Day 2 — AI Product Scoping (Vin Smart Future)
 Vinhomes resident-feedback routing prompt prototype.
 
 This prototype demonstrates a hybrid design:
-1. Gemini 2.5 Flash classifies untrusted Vietnamese ticket text.
+1. The configured Gemini Flash model classifies untrusted Vietnamese ticket text.
 2. Deterministic Python rules validate the model output and choose the route.
 3. Every result remains a draft and requires a human decision.
 
@@ -18,7 +18,11 @@ import sys
 from typing import Any
 
 
-GEMINI_MODEL = "gemini-2.5-flash"
+# The worksheet names Gemini 2.5 Flash, but the Gemini API returns 404 for that
+# model on new accounts. Use the currently available replacement by default.
+# Set GEMINI_MODEL in the environment if the instructor provides another model.
+ASSIGNMENT_MODEL = "gemini-2.5-flash"
+GEMINI_MODEL = os.getenv("GEMINI_MODEL", "gemini-3.6-flash")
 CONFIDENCE_THRESHOLD = 0.85
 
 CATEGORIES = {
@@ -246,7 +250,8 @@ def enforce_boundaries(user_input: str, model_result: dict[str, Any]) -> dict[st
 
 def evaluate_prompt(user_input: str) -> str:
     """
-    Call Gemini 2.5 Flash, validate its structured response, apply deterministic
+    Call the configured Gemini model, validate its structured response, apply
+    deterministic
     boundaries, and return the final draft as formatted JSON.
     """
     # Imports are local so importing this module for static checks does not require
@@ -267,6 +272,9 @@ def evaluate_prompt(user_input: str) -> str:
             temperature=0,
             response_mime_type="application/json",
             response_schema=MODEL_RESPONSE_SCHEMA,
+            automatic_function_calling=types.AutomaticFunctionCallingConfig(
+                disable=True
+            ),
         ),
     )
 
