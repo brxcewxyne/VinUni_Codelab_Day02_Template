@@ -76,6 +76,21 @@ python -c "import os; print('API Key status: OK' if os.getenv('GEMINI_API_KEY') 
 
 ---
 
+## 🖥️ Chạy giao diện prototype Vinhomes
+
+Sau khi kích hoạt môi trường ảo, cài dependencies và thiết lập API key, chạy:
+
+```powershell
+streamlit run starter-code/app.py
+```
+
+Giao diện cho phép nhập phản ánh cư dân hoặc chọn dữ liệu mẫu, gọi Gemini để phân
+loại và hiển thị category, priority, location, route, confidence, cảnh báo prompt
+injection và yêu cầu Human Review. Có thể nhập API key tạm thời trong thanh bên;
+key chỉ được giữ trong tiến trình chạy và không được ghi vào source code.
+
+---
+
 ## 👥 3. Quy định Làm bài và Nộp bài Nhóm (Group Workflow & Git Rules)
 
 Môn học này áp dụng mô hình cộng tác nhóm kết hợp chấm điểm cá nhân và chấm điểm nhóm thông qua Git Branching.
