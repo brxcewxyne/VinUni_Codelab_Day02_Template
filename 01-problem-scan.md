@@ -1,19 +1,6 @@
-# 🔍 Phase 1 — SCAN (Cá nhân, 20 min)
+# Phase 1 — SCAN
 
-Hãy sử dụng **4 Lenses** dưới đây để quét qua hoạt động vận hành của các công ty thành viên Vingroup. Ghi lại **ít nhất 5 bài toán/bottleneck** thực tế.
-
-### 4 Lenses tìm bài toán AI cho Vingroup:
-1. **Lặp lại (Repetitive):** Tác vụ lặp đi lặp lại nhiều lần hằng ngày. (Ví dụ: So khớp hóa đơn sạc điện tại VinFast, route lại chuyến taxi tại Xanh SM).
-2. **Tốn thời gian (Time-consuming):** Tác vụ ngốn thời gian xử lý thủ công của nhân viên. (Ví dụ: Soạn thảo phản hồi đánh giá 1-star của cư dân Vinhomes).
-3. **AI có thể tốt hơn (AI-upgrade):** Dịch vụ khách hàng hiện tại còn chậm hoặc phản hồi rập khuôn. (Ví dụ: Chatbot CSKH Vinpearl hỗ trợ đặt vé vui chơi).
-4. **Pain từ người khác (Stakeholder Pain):** Bottleneck khiến khách hàng hoặc nhân viên thực địa phàn nàn. (Ví dụ: Tài xế Xanh SM phàn nàn về việc hệ thống gợi ý điểm đón khách không chính xác).
-
-> [!TIP]
-> **🤖 AI Prompts — Partner brainstorm:**
-> Hãy sử dụng prompt sau để brainstorm các bài toán thực tế nếu bạn chưa có ý tưởng:
-> *"Tôi là AI Engineer tại Vin Smart Future (Vingroup). Tôi đang tìm kiếm các pain point vận hành cụ thể có thể tối ưu bằng AI cho mảng [Chọn một: VinFast / Xanh SM / Vinhomes / Vinmec]. Hãy gợi ý cho tôi 5 quy trình nghiệp vụ thủ công, tốn nhiều thời gian và gây rò rỉ hiệu suất kèm con số thống kê ước tính về tổn thất."*
-
-### 📝 List bài toán của tôi:
+### List bài toán của tôi:
 | # | Subsidiary (VinFast/Xanh SM...) | Lens | Mô tả ngắn bài toán |
 |---|----------------------------------|------|---------------------|
 | 1 | **Vinhomes** | Lặp lại | Phân loại phản ánh cư dân từ App Vinhomes Resident (mất nước, hỏng đèn, ồn ào, thang máy, vệ sinh, an ninh…) |
@@ -24,9 +11,7 @@ Hãy sử dụng **4 Lenses** dưới đây để quét qua hoạt động vận
 
 ---
 
-# 🃏 Phase 2 — QUICK-ASSESS (Cá nhân, 30 min)
-
-Chọn **top 3 bài toán** từ danh sách trên và hoàn thiện **3 Quick Problem Cards** dưới đây (10 phút/card).
+# Phase 2 — QUICK-ASSESS
 
 ```
 ┌─────────────────────────────────────────────────────────────┐
@@ -126,18 +111,9 @@ Chọn **top 3 bài toán** từ danh sách trên và hoàn thiện **3 Quick Pr
 └─────────────────────────────────────────────────────────────┘
 ```
 
-> [!TIP]
-> **🤖 AI Prompts — Stress-Test thẻ bài toán:**
-> Hãy dán nội dung thẻ bài toán của bạn vào LLM để nhận phản biện:
-> *"Đây là một thẻ bài toán vận hành tôi đề xuất cho Vin Smart Future: [Dán nội dung]. Hãy đóng vai trò là một CFO và Trưởng phòng Vận hành cực kỳ khắt khe, chỉ ra cho tôi 3 điểm yếu về logic, metric, và giải thích vì sao rule-based code thông thường có thể giải quyết bài toán này tốt hơn là dùng AI."*
-
 ---
 
 # 🗳️ Quyết định lựa chọn của nhóm:
-Nhóm quyết định chọn bài toán **"Card #1 — Phân loại & điều hướng phản ánh cư dân"** để thực hiện Deep-Dive.
-
-## Lý do lựa chọn và loại bỏ các thẻ khác:
-* **Card #3 (Vinpearl — Review khách sạn):** Có giá trị nhưng chủ yếu là phân tích dữ liệu review bên ngoài, cần tập dữ liệu lớn và quy trình monitoring dài hơn.
-* **Card #4 (Xanh SM — Sự cố pin):** Là bài toán rất tốt về mặt vận hành, nhưng cần tích hợp dữ liệu GPS, trạm sạc, và quy trình dispatch an toàn phức tạp hơn.
+Nhóm quyết định chọn bài toán **"Card #1 — Phân loại & điều hướng phản ánh cư dân"** để thực hiện Deep-Dive vì bài toán lặp lại hằng ngày, có dữ liệu text tiếng Việt rõ ràng, có thể đo bằng SLA/tỉ lệ route đúng, và rủi ro có thể kiểm soát bằng [DRAFT_ONLY] cùng human-in-the-loop.
 
 ---
